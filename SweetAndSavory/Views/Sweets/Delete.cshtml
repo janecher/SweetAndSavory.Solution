@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetAndSavory.Models.Sweet
+
+<h3>Delete this sweet?</h3>
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+<hr />
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" class="btn" />
+}
+
+<p>@Html.ActionLink("Sweets list", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

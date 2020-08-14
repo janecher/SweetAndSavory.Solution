@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SweetAndSavory.Models;
+@using System.Security.Claims
+@model List<SweetAndSavory.Models.Sweet>
+
+@if (User.Identity.IsAuthenticated)
+{
+  <h3>Welcome @User.Identity.Name</h3>
+  <p>@Html.ActionLink("Add new sweet", "Create")</p>
+  <hr />
+}
+<h4>Sweets:</h4>
+<hr />
+@if (Model.Any())
+{
+  @foreach (Sweet sweet in Model)
+  {
+    <p>@Html.ActionLink($"{sweet.Name}", "Details", new { id = sweet.SweetId })</p> 
+  }
+}
+else
+{
+  <p>No ssweets have been found.</p>
+}
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
