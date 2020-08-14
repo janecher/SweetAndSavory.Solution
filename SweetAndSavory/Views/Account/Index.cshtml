@@ -3,10 +3,15 @@
 }
 
 @using System.Security.Claims
-
 @if (User.Identity.IsAuthenticated)
 {
-  <h3>Hello @User.Identity.Name!</h3>
+  <div class="nav">
+    <span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
+    <span class="links">@Html.ActionLink("Sweets", "Index", "Sweets")</span>
+    <span class="links">@Html.ActionLink("Savories", "Index", "Savories")</span>
+  </div>
+  <h3>Hello</h3>
+  <h3 class="user-name">@User.Identity.Name</h3>
   @using (Html.BeginForm("LogOff", "Account"))
   {
     <input type="submit" class="btn" value="Log out" />
@@ -14,8 +19,7 @@
 }
 else
 {
-  <p>@Html.ActionLink("Register", "Register")</p>
-  <p>@Html.ActionLink("Log in", "Login")</p>
+  <p class="home-link">@Html.ActionLink("Home", "Index", "Home")</p>
+  <p class="home-link">@Html.ActionLink("Register", "Register")</p>
+  <p class="home-link">@Html.ActionLink("Log in", "Login")</p>
 }
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -1,0 +1,79 @@
+body{
+  background-color: #fff3e6;
+}
+
+.jumbotron {
+  background-image: url(../images/sweets.jpg);
+  background-size: cover;
+  opacity: 0.5;
+}
+
+.jumbotron h1 {
+  color: #1a0d00;
+}
+
+.button-links {
+  border-radius: 3px;
+  padding: 10px;
+  text-align: center;
+  margin-right: 5px;
+  background-color: #ffcc99;
+}
+
+.button-links a{
+  color: #663300;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home, .home-link, .links{
+  text-align: center;
+}
+
+.home-link{
+  border-radius: 1px;
+  padding: 15px;
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #ffcc99;
+  width: 300px;
+}
+
+.home-link a{
+  color: #663300;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn {
+  color: #663300;  
+  font-weight: bold;
+  background-color: #ffcc99;
+  width: 150px;
+  border-radius: 1px;
+}
+
+.links {
+  border-radius: 1px;
+  padding: 15px;
+  text-align: center;
+  background-color: #ffcc99;
+  margin-right: 10px;
+  display: inline;
+}
+
+.links a{
+  color: #663300;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.user-name {
+  font-size: 24px;
+  color: #663300;
+}
+
+.nav {
+  margin-bottom: 20px;
+}

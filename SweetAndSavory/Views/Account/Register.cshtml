@@ -5,6 +5,7 @@
 @using SweetAndSavory.ViewModels
 @model RegisterViewModel
 
+<p class="links">@Html.ActionLink("Home", "Index", "Home")</p>
 <h3>Register a new user:</h3>
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
