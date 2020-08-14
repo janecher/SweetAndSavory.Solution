@@ -4,38 +4,41 @@
 @using System.Security.Claims
 @model SweetAndSavory.Models.Sweet;
 
+<span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
+<span class="links">@Html.ActionLink("Sweets list", "Index")</span>
 @if (User.Identity.IsAuthenticated)
 {
-  <h3>Welcome @User.Identity.Name</h3>
-  <p>@Html.ActionLink("Edit sweet", "Edit", new { id = Model.SweetId })</p>
-  <p>@Html.ActionLink("Delete sweet", "Delete", new { id = Model.SweetId })</p>
-  <p>@Html.ActionLink("Add sweet", "AddSweet", new { id = Model.SweetId })</p>
+  <span class="links">@Html.ActionLink("Edit sweet", "Edit", new { id = Model.SweetId })</span>
+  <span class="links">@Html.ActionLink("Delete sweet", "Delete", new { id = Model.SweetId })</span>
   <hr />
+  <h3>User:</h3>
+  <h3 class="user-name">@User.Identity.Name</h3>
 }
-<h3>Sweet details:</h3>
-<hr />
-<h4>Name: @Model.Name</h4>
-<h4>Savories:</h4>
-<hr />
-@if(@Model.Savories.Count == 0)
-{
-  <p>No savories have been found</p>
-}
-else
-{
-  @foreach(var join in Model.Savories)
-  {
-    <p>@Html.ActionLink(@join.Savory.Name, "Details", "Savories", new {id = join.SavoryId})</p>
-    @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+<h3>Sweet name:</h3>
+<h3 class="user-name">@Model.Name</h3>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h4 class="panel-title">Savories:</h4>
+  </div>
+  <div class="panel-body">
+    @if(@Model.Savories.Count == 0)
     {
-      @using (Html.BeginForm("DeleteSavory", "Sweets"))
+      <p>No savories have been found</p>
+    }
+    else
+    {
+      @foreach(var join in Model.Savories)
       {
-        @Html.Hidden("joinId", @join.SweetSavoryId)
-        <input type="submit" value="Delete" class="btn"/>
+        <p>@Html.ActionLink(@join.Savory.Name, "Details", "Savories", new {id = join.SavoryId})</p>
+        @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+        {
+          @using (Html.BeginForm("DeleteSavory", "Sweets"))
+          {
+            @Html.Hidden("joinId", @join.SweetSavoryId)
+            <input type="submit" value="Delete" class="btn"/>
+          }
+        }   
       }
-    }   
-  }
-}
-
-<p>@Html.ActionLink("Sweets list", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+    }
+  </div>
+</div>

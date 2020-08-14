@@ -4,9 +4,11 @@
 
 @model SweetAndSavory.Models.Sweet
 
-<h3>Add savory to this sweet:</h3>
-<h4>@Html.DisplayFor(model => model.Name)</h4>
+<span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
+<span class="links">@Html.ActionLink("Sweets list", "Index")</span>
 <hr />
+<h3>Add savory to this sweet:</h3>
+<h3 class="user-name">@Html.DisplayFor(model => model.Name)</h5>
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.SweetId)
@@ -16,6 +18,3 @@
   </div>
   <input type="submit" value="Add savory" class="btn" />
 }
-
-<p>@Html.ActionLink("Sweets list", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
