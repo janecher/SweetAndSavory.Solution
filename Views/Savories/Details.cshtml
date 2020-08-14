@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+@using System.Security.Claims
+@model Library.Models.Savory;
+
+@if (User.Identity.IsAuthenticated)
+{
+  <h3>Welcome @User.Identity.Name</h3>
+  <p>@Html.ActionLink("Edit savory", "Edit", new { id = Model.SavoryId })</p>
+  <p>@Html.ActionLink("Delete savory", "Delete", new { id = Model.SavoryId })</p>
+  <p>@Html.ActionLink("Add sweet", "AddSweet", new { id = Model.SavoryId })</p>
+  <hr />
+}
+<h3>Savory details:</h3>
+<hr />
+<h4>Name: @Model.Name</h4>
+<h4>Sweets:</h4>
+<hr />
+@if(@Model.Sweets.Count == 0)
+{
+  <p>No sweets have been found</p>
+}
+else
+{
+  @foreach(var join in Model.Sweets)
+  {
+    <p>@Html.ActionLink(@join.Sweet.Name, "Details", "Sweets", new {id = join.SweetId})</p>
+    @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+    {
+      @using (Html.BeginForm("DeleteSweet", "Savories"))
+      {
+        @Html.Hidden("joinId", @join.SweetSavoryId)
+        <input type="submit" value="Delete" class="btn"/>
+      }
+    }   
+  }
+}
+
+<p>@Html.ActionLink("Savories list", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

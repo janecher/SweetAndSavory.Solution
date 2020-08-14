@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetAndSavory.Models.Savory
+
+<h3>Add sweet to this savory:</h3>
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.SavoryId)
+  <div class="form-group"> 
+    @Html.Label("Select sweet")
+    @Html.DropDownList("SweetId", new {@class = "form-control"})
+  </div>
+  <input type="submit" value="Add sweet" class="btn" />
+}
+
+<p>@Html.ActionLink("Savories list", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
