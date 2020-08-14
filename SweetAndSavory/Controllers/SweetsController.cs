@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SweetAndSavory.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace SweetAndSavory.Controllers
 
     public ActionResult Index()
     {
-      List<SweetSavory> userSweets = _db.Sweets.ToList();
+      List<Sweet> userSweets = _db.Sweets.ToList();
       return View(userSweets);
     }
 
@@ -40,7 +41,7 @@ namespace SweetAndSavory.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      savory.User = currentUser;
+      sweet.User = currentUser;
       _db.Sweets.Add(sweet);
       if (SavoryId != 0)
       {

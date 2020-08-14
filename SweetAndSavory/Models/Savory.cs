@@ -10,6 +10,7 @@ namespace SweetAndSavory.Models
     }
     public int SavoryId { get; set; }
     public string Name { get; set; }
+    public virtual ApplicationUser User {get; set;}
     public virtual ICollection<SweetSavory> Sweets { get; set; }
   }
 }
