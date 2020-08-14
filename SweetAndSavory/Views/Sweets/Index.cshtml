@@ -8,22 +8,28 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-  <h3>Welcome @User.Identity.Name</h3>
-  <p>@Html.ActionLink("Add new sweet", "Create")</p>
+  <h4>Welcome</h4>
+  <h3>@User.Identity.Name</h3>
+  <p class="user-links">@Html.ActionLink("Add new sweet", "Create")</p>
   <hr />
 }
-<h4>Sweets:</h4>
-<hr />
-@if (Model.Any())
-{
-  @foreach (Sweet sweet in Model)
-  {
-    <p>@Html.ActionLink($"{sweet.Name}", "Details", new { id = sweet.SweetId })</p> 
-  }
-}
-else
-{
-  <p>No sweets have been found.</p>
-}
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h4 class="panel-title">Sweets:</h4>
+  </div>
+  <div class="panel-body">
+    @if (Model.Any())
+    {
+      @foreach (Sweet sweet in Model)
+      {
+        <p>@Html.ActionLink($"{sweet.Name}", "Details", new { id = sweet.SweetId })</p> 
+      }
+    }
+    else
+    {
+      <p>No sweets have been found.</p>
+    }
+  </div>
+</div>
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
