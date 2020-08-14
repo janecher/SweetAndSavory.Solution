@@ -125,7 +125,7 @@ namespace SweetAndSavory.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddSweet(Item item, int CategoryId)
+    public ActionResult AddSweet(Savory savory, int SweetId)
     {
       if (SweetId != 0)
       {
