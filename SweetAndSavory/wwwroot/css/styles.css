@@ -12,20 +12,6 @@ body{
   color: #1a0d00;
 }
 
-.button-links {
-  border-radius: 3px;
-  padding: 10px;
-  text-align: center;
-  margin-right: 5px;
-  background-color: #ffcc99;
-}
-
-.button-links a{
-  color: #663300;
-  text-decoration: none;
-  font-weight: bold;
-}
-
 .home, .home-link, .links{
   text-align: center;
 }
@@ -74,6 +60,12 @@ body{
   color: #663300;
 }
 
-.main{
-  padding-top: 20px;
+.list a{
+  color: #663300;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.panel {
+  margin-top: 20px;
 }

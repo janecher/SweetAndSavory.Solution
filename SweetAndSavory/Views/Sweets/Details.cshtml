@@ -10,6 +10,7 @@
 {
   <span class="links">@Html.ActionLink("Edit sweet", "Edit", new { id = Model.SweetId })</span>
   <span class="links">@Html.ActionLink("Delete sweet", "Delete", new { id = Model.SweetId })</span>
+  <span class="links">@Html.ActionLink("Add savory", "AddSavory", new { id = Model.SweetId })</span>
   <hr />
   <h3>User:</h3>
   <h3 class="user-name">@User.Identity.Name</h3>
@@ -29,7 +30,7 @@
     {
       @foreach(var join in Model.Savories)
       {
-        <p>@Html.ActionLink(@join.Savory.Name, "Details", "Savories", new {id = join.SavoryId})</p>
+        <p class="list">@Html.ActionLink(@join.Savory.Name, "Details", "Savories", new {id = join.SavoryId})</p>
         @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
         {
           @using (Html.BeginForm("DeleteSavory", "Sweets"))

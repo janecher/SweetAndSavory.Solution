@@ -142,7 +142,7 @@ namespace SweetAndSavory.Controllers
       var joinEntry = _db.SweetsSavories.FirstOrDefault(entry => entry.SweetSavoryId == joinId);
       _db.SweetsSavories.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new {id = joinEntry.SweetId});
     }
   }
 }

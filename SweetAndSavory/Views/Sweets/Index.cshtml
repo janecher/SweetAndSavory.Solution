@@ -6,9 +6,9 @@
 @using System.Security.Claims
 @model List<SweetAndSavory.Models.Sweet>
 
+<span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
 @if (User.Identity.IsAuthenticated)
 {
-  <span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
   <span class="links">@Html.ActionLink("Add new sweet", "Create")</span>
   <hr />
   <h3>User:</h3>
@@ -23,7 +23,7 @@
     {
       @foreach (Sweet sweet in Model)
       {
-        <p>@Html.ActionLink($"{sweet.Name}", "Details", new { id = sweet.SweetId })</p> 
+        <p class="list">@Html.ActionLink($"{sweet.Name}", "Details", new { id = sweet.SweetId })</p> 
       }
     }
     else

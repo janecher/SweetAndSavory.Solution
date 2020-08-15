@@ -4,8 +4,10 @@
 
 @model SweetAndSavory.Models.Savory
 
-<h3>Add new savory:</h3>
+<span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
+<span class="links">@Html.ActionLink("Savories list", "Index")</span>
 <hr />
+<h3>Add new savory:</h3>
 @using (Html.BeginForm())
 {
   <div class="form-group">
@@ -18,6 +20,3 @@
   </div>
   <input type="submit" value="Add" class="btn" />
 }
-
-<p>@Html.ActionLink("Savories list", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>

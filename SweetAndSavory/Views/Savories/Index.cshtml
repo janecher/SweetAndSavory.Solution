@@ -6,24 +6,29 @@
 @using System.Security.Claims
 @model List<SweetAndSavory.Models.Savory>
 
+<span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
 @if (User.Identity.IsAuthenticated)
 {
-  <h3>Welcome @User.Identity.Name</h3>
-  <p>@Html.ActionLink("Add new savory", "Create")</p>
+  <span class="links">@Html.ActionLink("Add new savory", "Create")</span>
   <hr />
+  <h3>User:</h3>
+  <h3 class="user-name">@User.Identity.Name</h3>
 }
-<h4>Savories:</h4>
-<hr />
-@if (Model.Any())
-{
-  @foreach (Savory savory in Model)
-  {
-    <p>@Html.ActionLink($"{savory.Name}", "Details", new { id = savory.SavoryId })</p> 
-  }
-}
-else
-{
-  <p>No savories have been found.</p>
-}
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h4 class="panel-title">Savories:</h4>
+  </div>
+  <div class="panel-body">
+    @if (Model.Any())
+    {
+      @foreach (Savory savory in Model)
+      {
+        <p class="list">@Html.ActionLink($"{savory.Name}", "Details", new { id = savory.SavoryId })</p> 
+      }
+    }
+    else
+    {
+      <p>No savories have been found.</p>
+    }
+  </div>
+</div>
