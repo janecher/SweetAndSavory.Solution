@@ -2,6 +2,7 @@
   Layout = "_Layout";
 }
 
+@using SweetAndSavory.Models
 @model SweetAndSavory.Models.Sweet
 
 <span class="links">@Html.ActionLink("Home", "Index", "Home")</span>
@@ -12,9 +13,12 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.SweetId)
-  <div class="form-group"> 
-    @Html.Label("Select savory")
-    @Html.DropDownList("SavoryId")
-  </div>
+  @Html.Label("Select savories:")
+  <br>
+  @foreach (Savory savory in ViewBag.SavoryId)
+  {
+    @Html.Label(savory.Name)
+    @Html.CheckBox("SavoryId", false, new { value = savory.SavoryId, @class="checkbox"})
+  }
   <input type="submit" value="Add savory" class="btn" />
 }

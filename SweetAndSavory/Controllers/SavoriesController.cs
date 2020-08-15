@@ -32,20 +32,23 @@ namespace SweetAndSavory.Controllers
     [Authorize] 
     public ActionResult Create()
     {
-      ViewBag.SweetId = new SelectList(_db.Sweets, "SweetId", "Name");
+      ViewBag.SweetId = _db.Sweets.ToList();
       return View();
     }
     
     [HttpPost]
-    public async Task<ActionResult> Create(Savory savory, int SweetId)
+    public async Task<ActionResult> Create(Savory savory, int[] SweetId)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       savory.User = currentUser;
       _db.Savories.Add(savory);
-      if (SweetId != 0)
+      if (SweetId.Length != 0)
       {
-        _db.SweetsSavories.Add(new SweetSavory() { SweetId = SweetId, SavoryId = savory.SavoryId });
+        foreach(int id in SweetId)
+        {
+          _db.SweetsSavories.Add(new SweetSavory() { SweetId = id, SavoryId = savory.SavoryId });
+        }
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -73,16 +76,19 @@ namespace SweetAndSavory.Controllers
       {
         return RedirectToAction("Details", new {id = id});
       }
-      ViewBag.SweetId = new SelectList(_db.Sweets, "SweetId", "Name"); 
+      ViewBag.SweetId = _db.Sweets.ToList();
       return View(thisSavory);
     }
 
     [HttpPost]
-    public ActionResult Edit(Savory savory, int SweetId)
+    public ActionResult Edit(Savory savory, int[] SweetId)
     {
-      if (SweetId != 0)
+      if (SweetId.Length != 0)
       {
-        _db.SweetsSavories.Add(new SweetSavory() { SweetId = SweetId, SavoryId = savory.SavoryId });
+        foreach(int id in SweetId)
+        {
+          _db.SweetsSavories.Add(new SweetSavory() { SweetId = id, SavoryId = savory.SavoryId });
+        }
       }
       _db.Entry(savory).State = EntityState.Modified;
       _db.SaveChanges();
@@ -121,16 +127,19 @@ namespace SweetAndSavory.Controllers
       {
         return RedirectToAction("Details", new {id = id});
       }
-      ViewBag.SweetId = new SelectList(_db.Sweets, "SweetId", "Name"); 
+      ViewBag.SweetId = _db.Sweets.ToList();
       return View(thisSavory);
     }
 
     [HttpPost]
-    public ActionResult AddSweet(Savory savory, int SweetId)
+    public ActionResult AddSweet(Savory savory, int[] SweetId)
     {
-      if (SweetId != 0)
+      if (SweetId.Length != 0)
       {
-        _db.SweetsSavories.Add(new SweetSavory() { SweetId = SweetId, SavoryId = savory.SavoryId });
+        foreach(int id in SweetId)
+        {
+          _db.SweetsSavories.Add(new SweetSavory() { SweetId = id, SavoryId = savory.SavoryId });
+        }
       }
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = savory.SavoryId});
